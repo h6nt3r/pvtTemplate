@@ -1,0 +1,60 @@
+id: reflection
+info:
+    name: search for reflection in header and body
+    author: roninja
+    severity: low
+    description: Potential Cross-Site Scripting (XSS), Cross-Site Request Forgery (CSRF) attacks, Cache Poisoning and Open URL Redirection.
+    reference:
+      - https://{{Hostname}}.{{https://hunterxbxss.bxss.in}}
+    tags: reflection,header,cookies,xss,dast
+    metadata:
+      max-request: 2
+requests:
+  - raw:
+      - |
+        GET / HTTP/1.1
+        Host: {{Hostname}}
+        User-Agent: Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36
+        Referer: https://r.{{Host}}.{{https://hunterxbxss.bxss.in}}
+        Origin: https://o.{{Host}}.{{https://hunterxbxss.bxss.in}}
+        Location: https://l.{{Host}}.{{https://hunterxbxss.bxss.in}}
+        X-Forwarded-Host: xfh.{{Host}}.{{https://hunterxbxss.bxss.in}}
+        X-Forwarded-For: xff.{{Host}}.{{https://hunterxbxss.bxss.in}}
+        X-Host: xh.{{Host}}.{{https://hunterxbxss.bxss.in}}
+        X-Original-Host: xoh.{{Host}}.{{https://hunterxbxss.bxss.in}}
+        X-Original-URL: xou.{{Host}}.{{https://hunterxbxss.bxss.in}}
+        Cookie: gude=tama.{{https://hunterxbxss.bxss.in}}
+        Gudetama: {{https://hunterxbxss.bxss.in}}
+        Accept-Encoding: gzip, deflate, br, zstd
+
+      - |
+        GET / HTTP/1.1
+        Host: {{Host}}.{{https://hunterxbxss.bxss.in}}
+        User-Agent: Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36
+        Cookie: gude=tama.{{https://hunterxbxss.bxss.in}}
+        Set-Cookie: gude=tama.{{https://hunterxbxss.bxss.in}}
+        Accept-Encoding: gzip, deflate, br, zstd
+
+      - |
+        GET / HTTP/1.1
+        Host: {{Hostname}}
+        User-Agent: Mozilla/5.0 (Linux; Android 10; K) AppleWebkit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Mobile Safari/537.36
+        Cookie: gude=tama.{{https://hunterxbxss.bxss.in}}
+        Set-Cookie: gude=tama.{{https://hunterxbxss.bxss.in}}
+        Accept-Encoding: gzip, deflate, br, zstd
+    
+    redirects: false
+    stop-at-first-match: false
+    matchers-condition: or
+    matchers:
+      - type: regex
+        regex:
+          - '(?m)^(?:(?:Set-Cookie\s*?:(?:\s*?|.*?;\s*?))(gude=tama)(?:\s*?)(?:$|;))'
+          - '(?mi)^(.*:\s*.*oast.*)'
+        part: header
+
+      - type: regex
+        regex:
+          - '(?m)^(?:(?:Set-Cookie\s*?:(?:\s*?|.*?;\s*?))(gude=tama)(?:\s*?)(?:$|;))'
+          - '(?mi)^(.*:\s*.*oast.*)'
+        part: body

