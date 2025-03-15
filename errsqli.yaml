@@ -1,9 +1,9 @@
 id: error-sqli
 info:
-  name: Blind SQL Injection time based detection of sql backend
+  name: error SQL Injection time based detection of sql backend
   author: oscuridad1010
   severity: High
-  tags: dast,sqli
+  tags: dast,sqli,esqli
 
 requests:
   - method: GET
